@@ -1,0 +1,2345 @@
+{
+  "name": "GTM Lead Enrichment & Validation System",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        -896
+      ],
+      "id": "bd284909-f0b6-4b6f-91e2-b17135c13a3f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1X8EVqaHq2M5Oa0Fk8GSRtCnTe8i46Kt4dJ_lh0u5RGo",
+          "mode": "list",
+          "cachedResultName": "Outscraper-20260521112407s2c_coffee_shop_%2B6",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X8EVqaHq2M5Oa0Fk8GSRtCnTe8i46Kt4dJ_lh0u5RGo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X8EVqaHq2M5Oa0Fk8GSRtCnTe8i46Kt4dJ_lh0u5RGo/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        240,
+        -80
+      ],
+      "id": "482b10c6-0db9-47ab-a8bd-8604002b23f7",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lxopbQf9lPoQywcz",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        688,
+        -16
+      ],
+      "id": "ba09e739-95ef-4a8f-8784-9f2a42e51db0",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y",
+          "mode": "list",
+          "cachedResultName": "ClubMe leads business- valid ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Category": "={{ $json.category }}",
+            "Website": "={{ $json.website }}",
+            "Email": "={{ $json.email }}",
+            "Address": "={{ $json.address }}",
+            "Business Name": "={{ $json.name }}",
+            "Reviews Count": "={{ $json.reviews }}",
+            "Google Rating": "={{ $json.rating }}",
+            "Phone": "='{{ $json.phone }}",
+            "Instegram": "={{ $json.company_instagram }}"
+          },
+          "matchingColumns": [
+            "Business Name"
+          ],
+          "schema": [
+            {
+              "id": "Business Name",
+              "displayName": "Business Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Status",
+              "displayName": "Email Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Instegram",
+              "displayName": "Instegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Google Rating",
+              "displayName": "Google Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviews Count",
+              "displayName": "Reviews Count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Lead's Score",
+              "displayName": "Lead's Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Contacted?",
+              "displayName": "Contacted?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Campaign Name",
+              "displayName": "Campaign Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Follow Up",
+              "displayName": "Follow Up",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Replied?",
+              "displayName": "Replied?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Interested?",
+              "displayName": "Interested?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Demo Scheduled?",
+              "displayName": "Demo Scheduled?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Demo Date",
+              "displayName": "Demo Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Closed Won?",
+              "displayName": "Closed Won?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Last Updated",
+              "displayName": "Last Updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        912,
+        -96
+      ],
+      "id": "4953590c-3784-41a7-9ea6-9c9492990d40",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lxopbQf9lPoQywcz",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y",
+          "mode": "list",
+          "cachedResultName": "ClubMe leads business- valid ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit#gid=0"
+        },
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        320
+      ],
+      "id": "5683d399-4661-4dd8-8f7b-147e17c4be12",
+      "name": "Clear sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lxopbQf9lPoQywcz",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "emails camphains"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        -240
+      ],
+      "id": "090e315a-ab0a-4f25-9715-6e016f815e52",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all();\n\nconst seen = new Map();\nconst result = [];\n\nfor (const item of rows) {\n  const name = item.json['name'].toString().trim().toLowerCase();\n  \n  if (!name) {\n    result.push(item);\n    continue;\n  }\n\n  // If we've seen this email before, skip (duplicate)\n  if (seen.has(name)) {\n    continue;\n  }\n\n  seen.set(name, true);\n  result.push(item);\n}\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -96
+      ],
+      "id": "3751c785-02c2-430f-b333-64ec35297317",
+      "name": "deduplicate business"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const data = { ...item.json };\n\n  const reviews = parseFloat(data['Reviews Count']) || 0;\n  const rating  = parseFloat(data['Google Rating'])  || 0;\n\n  let score;\n\n  if (reviews >= 50 && reviews <= 800 && rating >= 3.8) {\n    // Sweet spot: small-medium business, good reputation\n    score = 'High';\n\n  } else if (\n    (reviews > 800) ||\n    (reviews >= 20 && reviews < 50 && rating >= 3.5) ||\n    (reviews >= 50 && reviews <= 800 && rating >= 3.0 && rating < 3.8)\n  ) {\n    // Either too big, or decent but rating slightly low\n    score = 'Medium';\n\n  } else {\n    // Too few reviews, very low rating, or no data\n    score = 'Low';\n  }\n\n  data[\"Lead's Score\"] = score;\n  results.push({ json: data });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        -256
+      ],
+      "id": "e7e2abe2-dff7-4257-85cc-9a02f85b3f37",
+      "name": "lead scoring1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y",
+          "mode": "list",
+          "cachedResultName": "ClubMe leads business- valid ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "row_number": 0
+          },
+          "matchingColumns": [
+            "Business Name"
+          ],
+          "schema": [
+            {
+              "id": "Business Name",
+              "displayName": "Business Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Status",
+              "displayName": "Email Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Instegram",
+              "displayName": "Instegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Google Rating",
+              "displayName": "Google Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviews Count",
+              "displayName": "Reviews Count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lead's Score",
+              "displayName": "Lead's Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Contacted?",
+              "displayName": "Contacted?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Campaign Name",
+              "displayName": "Campaign Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow Up",
+              "displayName": "Follow Up",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Replied?",
+              "displayName": "Replied?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Interested?",
+              "displayName": "Interested?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Demo Scheduled?",
+              "displayName": "Demo Scheduled?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Demo Date",
+              "displayName": "Demo Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Closed Won?",
+              "displayName": "Closed Won?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Updated",
+              "displayName": "Last Updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1360,
+        -240
+      ],
+      "id": "a6ba15c9-24cf-40c7-85a3-14f063c8c36f",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lxopbQf9lPoQywcz",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        -256
+      ],
+      "id": "4e630caf-e457-4f35-a7a9-f3ce820e39de",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1136,
+        -16
+      ],
+      "id": "a24f9335-54d9-491d-b962-7bd1b7cec629",
+      "name": "Wait1",
+      "webhookId": "1f21d6bf-c48a-4003-98ca-718d28e4d07a"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1568,
+        -240
+      ],
+      "id": "1971916b-9e37-4c3d-a841-22aa79b2fc19",
+      "name": "Wait2",
+      "webhookId": "4044c502-36fd-4db7-9003-0b4023321cea"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ab89f1a1-85f5-434a-b28d-ccaa0877b8a1",
+              "leftValue": "={{ $json.Instegram }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "1888fc73-846a-4b7b-8142-522403f812aa",
+              "leftValue": "={{ $json.Website }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1520,
+        -416
+      ],
+      "id": "95f53a8f-c349-42a8-9d43-4c992d71452b",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "q": "={{ $json[\"Business Name\"] }} {{ $json.Category }} Israel",
+        "locationSettings": {
+          "gl": "il"
+        },
+        "languageSettings": {},
+        "searchOptions": {},
+        "timeFilters": {},
+        "pagination": {},
+        "advancedOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@searchapi/n8n-nodes-searchapi.searchApi",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        -432
+      ],
+      "id": "eb398599-210d-4763-9d3b-5c85f3579102",
+      "name": "Search google",
+      "credentials": {
+        "searchApi": {
+          "id": "q0kFXtgy3xN5zcuf",
+          "name": "SearchApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const result = $input.item.json;\nconst kg = result.knowledge_graph || {};\nconst organicResults = result.organic_results || [];\n\n// Extract from knowledge_graph profiles\nconst profiles = kg.profiles || [];\nconst fbProfile = profiles.find(p => p.name === \"Facebook\")?.link || null;\nconst igProfile = profiles.find(p => p.name === \"Instagram\")?.link || null;\n\n// Fallback: scan organic results for Instagram/Facebook\nconst igOrganic = organicResults.find(r =>\n  r.link?.includes(\"instagram.com\"))?.link || null;\n\nconst fbOrganic = organicResults.find(r =>\n  r.link?.includes(\"facebook.com\"))?.link || null;\n\n// Website: domain (between // and next /) must contain business name\nconst businessName = (kg.title || \"\")\n  .toLowerCase()\n  .replace(/[^a-z0-9]/g, \"\"); // strip spaces and special chars\n\nconst excludedDomains = [\n  \"tripadvisor\", \"timeout\", \"wanderlog\", \"yelp\", \"zomato\",\n  \"happycow\", \"atly\", \"10bis\", \"wolt\", \"instagram\", \"facebook\",\n  \"tiktok\", \"nypost\", \"google\", \"easy.co.il\", \"alamy\"\n];\n\nconst websiteOrganic = organicResults.find(r => {\n  if (!r.link) return false;\n\n  // Extract domain = part between // and next /\n  const domainMatch = r.link.match(/\\/\\/([^\\/]+)/);\n  if (!domainMatch) return false;\n  const domain = domainMatch[1].toLowerCase().replace(/^www\\./, \"\");\n\n  // Domain must contain business name\n  const domainClean = domain.replace(/[^a-z0-9]/g, \"\");\n  const nameMatches = domainClean.includes(businessName);\n\n  // Must not be an excluded site\n  const isExcluded = excludedDomains.some(d => domain.includes(d));\n\n  return nameMatches && !isExcluded;\n})?.link || null;\n\nreturn {\n  json: {\n    business: kg.title,\n    instagram: igProfile || igOrganic,\n    facebook: fbProfile || fbOrganic,\n    website: websiteOrganic,\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2096,
+        -432
+      ],
+      "id": "08a63080-a1c4-4cf3-954d-ff9aca30461c",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "zone": {
+          "__rl": true,
+          "mode": "list",
+          "value": "n8n_unlocker"
+        },
+        "country": {
+          "__rl": true,
+          "value": "li",
+          "mode": "list",
+          "cachedResultName": "li"
+        },
+        "url": "={{ $json.website || $json.facebook || $json.instagram }}",
+        "format": "json",
+        "requestOptions": {}
+      },
+      "type": "@brightdata/n8n-nodes-brightdata.brightData",
+      "typeVersion": 1,
+      "position": [
+        2544,
+        -848
+      ],
+      "id": "2e5ca5c4-8035-4045-84da-90eeff8e0995",
+      "name": "Access and extract data from a specific URL",
+      "credentials": {
+        "brightdataApi": {
+          "id": "sdu4vuMEOCvOb2cS",
+          "name": "BrightData account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Ensure your Code Node settings are set to: \"Run For Each Item\"\n\nconst bodyContent = $input.item.json.body || '';\nlet extractedEmail = null;\n\n// 1. Check for standard mailto: links in the HTML body\nconst mailtoMatch = bodyContent.match(/href=[\"']mailto:([^\"'?]+)[\"']/i);\nif (mailtoMatch && mailtoMatch[1]) {\n  extractedEmail = mailtoMatch[1].trim();\n}\n\n// 2. Fallback: If no mailto link is found, scan for any plain text email patterns\nif (!extractedEmail) {\n  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/;\n  const plainMatch = bodyContent.match(emailRegex);\n  if (plainMatch) {\n    extractedEmail = plainMatch[0].trim();\n  }\n}\n\n// 3. Now using your exact syntax safely:\nlet businessName = $('Limit1').item.json.business\n\n// Output clean JSON for the single current item\nreturn {\n  json: {\n    business_name: businessName,\n    extracted_email: extractedEmail\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2656,
+        -768
+      ],
+      "id": "91436e4e-7f71-47fe-8457-6d72ad04d1ab",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "maxItems": 10
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        -768
+      ],
+      "id": "d0e1762c-af5b-4d4b-abfa-e9bd2dd0a631",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1696,
+        -416
+      ],
+      "id": "cabe5687-157b-4bc9-9cc4-918964943e2c",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y",
+          "mode": "list",
+          "cachedResultName": "ClubMe leads business- valid ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Business Name"
+          ],
+          "schema": [
+            {
+              "id": "Business Name",
+              "displayName": "Business Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Status",
+              "displayName": "Email Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Instegram",
+              "displayName": "Instegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Google Rating",
+              "displayName": "Google Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviews Count",
+              "displayName": "Reviews Count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lead's Score",
+              "displayName": "Lead's Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Contacted?",
+              "displayName": "Contacted?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Campaign Name",
+              "displayName": "Campaign Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow Up",
+              "displayName": "Follow Up",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Replied?",
+              "displayName": "Replied?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Interested?",
+              "displayName": "Interested?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Demo Scheduled?",
+              "displayName": "Demo Scheduled?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Demo Date",
+              "displayName": "Demo Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Closed Won?",
+              "displayName": "Closed Won?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Updated",
+              "displayName": "Last Updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2368,
+        -448
+      ],
+      "id": "f63cd89c-2cce-4766-9341-b633b22090bf",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lxopbQf9lPoQywcz",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "emailVerifier",
+        "email": "={{ $json.Email }}"
+      },
+      "type": "n8n-nodes-base.hunter",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        -624
+      ],
+      "id": "daa32b5c-ab8e-4950-ab31-3cfcbb61f3be",
+      "name": "Hunter",
+      "credentials": {
+        "hunterApi": {
+          "id": "Ns7QqzCyhUSP8EbP",
+          "name": "Hunter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fca368f2-c14c-437d-af24-b43cd6dfbc33",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1264,
+        -512
+      ],
+      "id": "b40ac3a4-6482-4c7a-979c-02824e01287b",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "maxItems": 10
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1472,
+        -608
+      ],
+      "id": "e6e59fa9-c8ed-4421-a815-7b449672430b",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0e130586-a05e-427e-95f3-9bd2219560b7",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "=valid",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1856,
+        -624
+      ],
+      "id": "2169f41f-759b-4fda-aafd-ff8f168b41bc",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y",
+          "mode": "list",
+          "cachedResultName": "ClubMe leads business- valid ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14PAgLDwfb44kfwOhNs_4yqJ5uQpeH67KA_CyhN-637Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email Status": "={{ $json.status }}",
+            "Email": "={{ $json.email }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Business Name",
+              "displayName": "Business Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Status",
+              "displayName": "Email Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Instegram",
+              "displayName": "Instegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Google Rating",
+              "displayName": "Google Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviews Count",
+              "displayName": "Reviews Count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lead's Score",
+              "displayName": "Lead's Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Contacted?",
+              "displayName": "Contacted?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Campaign Name",
+              "displayName": "Campaign Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow Up",
+              "displayName": "Follow Up",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Replied?",
+              "displayName": "Replied?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Interested?",
+              "displayName": "Interested?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Demo Scheduled?",
+              "displayName": "Demo Scheduled?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Demo Date",
+              "displayName": "Demo Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Closed Won?",
+              "displayName": "Closed Won?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Updated",
+              "displayName": "Last Updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2032,
+        -736
+      ],
+      "id": "c1eb3c22-6c71-4513-a560-409b3f8322e6",
+      "name": "Update row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lxopbQf9lPoQywcz",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Limit": [
+      {
+        "json": {
+          "Category": "Juice shop",
+          "Website": "https://www.facebook.com/tamara.telaviv",
+          "Email": "tamara.tlv@gmail.com",
+          "Address": "Dizengoff St 171, א, Tel Aviv-Yafo",
+          "Business Name": "Tamara",
+          "Reviews Count": 2340,
+          "Google Rating": 4.5,
+          "Phone": "'+972 3-523-4445",
+          "Instegram": "",
+          "Lead's Score": "Medium"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      },
+      {
+        "json": {
+          "Category": "Health food store",
+          "Website": "https://www.jusa.co.il/",
+          "Email": "info@jusa.co.il",
+          "Address": "Dizengoff St 101, Tel Aviv-Yafo",
+          "Business Name": "Jusa",
+          "Reviews Count": 143,
+          "Google Rating": 4.3,
+          "Phone": "'+972 3-730-5599",
+          "Instegram": "https://www.instagram.com/jusa_coldpressed",
+          "Lead's Score": "High"
+        },
+        "pairedItem": {
+          "item": 1
+        }
+      },
+      {
+        "json": {
+          "Category": "coffee shops",
+          "Website": "https://israelbusinessguide.com/catalog/bat-yam/aroma_espresso_bar___/",
+          "Email": "tel@kivunim7.co.il",
+          "Address": "Rothschild St 29, Bat Yam, 5931606",
+          "Business Name": "Aroma Espresso Bar ארומה אספרסו בר",
+          "Reviews Count": 644,
+          "Google Rating": 4.1,
+          "Phone": "'+972 3-659-3550",
+          "Instegram": "",
+          "Lead's Score": "High"
+        },
+        "pairedItem": {
+          "item": 2
+        }
+      },
+      {
+        "json": {
+          "Category": "Juice shop",
+          "Website": "http://www.etrogman.com/",
+          "Email": "uzielietrogman@gmail.com",
+          "Address": "Allenby St 60, Tel Aviv-Yafo",
+          "Business Name": "Etrogman",
+          "Reviews Count": 90,
+          "Google Rating": 4.4,
+          "Phone": "'+972 3-556-7706",
+          "Instegram": "https://www.instagram.com/etrogman",
+          "Lead's Score": "High"
+        },
+        "pairedItem": {
+          "item": 3
+        }
+      },
+      {
+        "json": {
+          "Category": "coffee shops",
+          "Website": "http://www.joe.co.il/",
+          "Email": "ari@joe.co.il",
+          "Address": "Derech Ben Gurion 69, Bat Yam",
+          "Business Name": "Café Joe",
+          "Reviews Count": 2213,
+          "Google Rating": 4.1,
+          "Phone": "'+972 3-509-1119",
+          "Instegram": "https://www.instagram.com/cafejoe",
+          "Lead's Score": "Medium"
+        },
+        "pairedItem": {
+          "item": 4
+        }
+      },
+      {
+        "json": {
+          "Category": "restaurants",
+          "Website": "https://www.gorillacafe.co.il/",
+          "Email": "gorrilla@gmail.com",
+          "Address": "Derech Ben Gurion 81, Bat Yam",
+          "Business Name": "Gorilla",
+          "Reviews Count": 3071,
+          "Google Rating": 3.8,
+          "Phone": "'+972 77-410-1422",
+          "Instegram": "https://www.instagram.com/gorillabarcafe",
+          "Lead's Score": "Medium"
+        },
+        "pairedItem": {
+          "item": 5
+        }
+      },
+      {
+        "json": {
+          "Category": "Health food store",
+          "Website": "http://neroli.co.il/",
+          "Email": "neroli7869@gmail.com",
+          "Address": "Lilienblum St 3, Tel Aviv-Yafo",
+          "Business Name": "Neroli Healthfood Store & Raw Diner",
+          "Reviews Count": 331,
+          "Google Rating": 4.5,
+          "Phone": "'+972 3-510-7869",
+          "Instegram": "",
+          "Lead's Score": "High"
+        },
+        "pairedItem": {
+          "item": 6
+        }
+      },
+      {
+        "json": {
+          "Category": "Juice shop",
+          "Website": "https://wolt.com/he/isr/tel-aviv/restaurant/rebar-bialik-rg",
+          "Email": "Cfitzg6505@aol.Com",
+          "Address": "25, נמל ת\"א, יריד המזרח, Tel Aviv-Yafo",
+          "Business Name": "Rebar",
+          "Reviews Count": 920,
+          "Google Rating": 3.7,
+          "Phone": "'",
+          "Instegram": "https://www.instagram.com/amuthu_kitchen_",
+          "Lead's Score": "Medium"
+        },
+        "pairedItem": {
+          "item": 7
+        }
+      },
+      {
+        "json": {
+          "Category": "restaurants",
+          "Website": "http://tampopo.co.il/",
+          "Email": "ilayito134@gmail.com",
+          "Address": "Derech Ben Gurion 65, Bat Yam",
+          "Business Name": "Tampopo",
+          "Reviews Count": 4997,
+          "Google Rating": 4.7,
+          "Phone": "'+972 3-659-4194",
+          "Instegram": "",
+          "Lead's Score": "Medium"
+        },
+        "pairedItem": {
+          "item": 8
+        }
+      },
+      {
+        "json": {
+          "Category": "restaurants",
+          "Website": "https://bg136.co.il/",
+          "Email": "bgbar136@gmail.com",
+          "Address": "Derech Ben Gurion 136, Bat Yam, 5930136",
+          "Business Name": "BG Lounge Bar",
+          "Reviews Count": 700,
+          "Google Rating": 4.6,
+          "Phone": "'+972 3-551-2890",
+          "Instegram": "https://www.instagram.com/bg_lounge_bar_",
+          "Lead's Score": "High"
+        },
+        "pairedItem": {
+          "item": 9
+        }
+      }
+    ],
+    "Hunter": [
+      {
+        "json": {
+          "status": "valid",
+          "score": 92,
+          "email": "tamara.tlv@gmail.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 100,
+          "email": "info@jusa.co.il",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": false,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [
+            {
+              "domain": "sternglobalgroup.com",
+              "uri": "https://sternglobalgroup.com/portfolio",
+              "extracted_on": "2018-03-28",
+              "last_seen_on": "2026-05-21",
+              "still_on_page": true
+            },
+            {
+              "domain": "jusa.co.il",
+              "uri": "https://jusa.co.il/basic-cleanse",
+              "extracted_on": "2025-06-18",
+              "last_seen_on": "2026-04-25",
+              "still_on_page": true
+            },
+            {
+              "domain": "jusa.co.il",
+              "uri": "https://jusa.co.il",
+              "extracted_on": "2021-03-24",
+              "last_seen_on": "2026-03-20",
+              "still_on_page": true
+            },
+            {
+              "domain": "jusa.co.il",
+              "uri": "https://jusa.co.il/accessibility",
+              "extracted_on": "2024-10-08",
+              "last_seen_on": "2026-03-20",
+              "still_on_page": true
+            },
+            {
+              "domain": "jusa.co.il",
+              "uri": "https://jusa.co.il/advanced-cleanse",
+              "extracted_on": "2024-10-08",
+              "last_seen_on": "2026-03-19",
+              "still_on_page": true
+            },
+            {
+              "domain": "jusa.co.il",
+              "uri": "https://jusa.co.il/about",
+              "extracted_on": "2024-10-08",
+              "last_seen_on": "2026-03-18",
+              "still_on_page": true
+            },
+            {
+              "domain": "buyme.co.il",
+              "uri": "https://buyme.co.il/supplier/7330666",
+              "extracted_on": "2021-06-27",
+              "last_seen_on": "2025-02-09",
+              "still_on_page": false
+            },
+            {
+              "domain": "buyme.co.il",
+              "uri": "https://buyme.co.il/package/7330666/11615962",
+              "extracted_on": "2021-01-22",
+              "last_seen_on": "2021-01-22",
+              "still_on_page": false
+            },
+            {
+              "domain": "buyme.co.il",
+              "uri": "https://buyme.co.il/package/7330666/11615965",
+              "extracted_on": "2020-07-22",
+              "last_seen_on": "2021-01-22",
+              "still_on_page": false
+            },
+            {
+              "domain": "buyme.co.il",
+              "uri": "https://buyme.co.il/package/7330666/7332358",
+              "extracted_on": "2019-02-17",
+              "last_seen_on": "2021-01-16",
+              "still_on_page": false
+            },
+            {
+              "domain": "buyme.co.il",
+              "uri": "https://buyme.co.il/package/7330666/11615963",
+              "extracted_on": "2020-06-26",
+              "last_seen_on": "2021-01-13",
+              "still_on_page": false
+            }
+          ],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 1
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 100,
+          "email": "tel@kivunim7.co.il",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": false,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [
+            {
+              "domain": "mishkan7.co.il",
+              "uri": "https://mishkan7.co.il/%D7%AA%D7%A7%D7%A0%D7%95%D7%9F-%D7%94%D7%9E%D7%A9%D7%9B%D7%9F",
+              "extracted_on": "2026-02-07",
+              "last_seen_on": "2026-05-18",
+              "still_on_page": true
+            },
+            {
+              "domain": "kivunim7.co.il",
+              "uri": "https://kivunim7.co.il/article/%D7%9E%D7%AA%D7%9B%D7%95%D7%A0%D7%A0%D7%99%D7%9D-%D7%9C%D7%A7%D7%99%D7%A5",
+              "extracted_on": "2026-05-13",
+              "last_seen_on": "2026-05-13",
+              "still_on_page": true
+            },
+            {
+              "domain": "kivunim7.co.il",
+              "uri": "https://kivunim7.co.il/department/%D7%A8%D7%99%D7%A9%D7%95%D7%9D-%D7%95%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%A7%D7%95%D7%97%D7%95%D7%AA",
+              "extracted_on": "2026-05-13",
+              "last_seen_on": "2026-05-13",
+              "still_on_page": true
+            },
+            {
+              "domain": "kivunim7.co.il",
+              "uri": "https://kivunim7.co.il/department/%D7%A8%D7%99%D7%A9%D7%95%D7%9D-%D7%95%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%A7%D7%95%D7%97%D7%95%D7%AA/%D7%90%D7%95%D7%93%D7%95%D7%AA",
+              "extracted_on": "2026-05-13",
+              "last_seen_on": "2026-05-13",
+              "still_on_page": true
+            },
+            {
+              "domain": "mishkan7.co.il",
+              "uri": "https://mishkan7.co.il/%25d7%25aa%25d7%25a7%25d7%25a0%25d7%2595%25d7%259f-%25d7%2594%25d7%259e%25d7%25a9%25d7%259b%25d7%259f",
+              "extracted_on": "2025-11-05",
+              "last_seen_on": "2026-05-12",
+              "still_on_page": true
+            },
+            {
+              "domain": "negev-museum.org.il",
+              "uri": "https://negev-museum.org.il/%D7%AA%D7%A7%D7%A0%D7%95%D7%9F-%D7%94%D7%9E%D7%95%D7%96%D7%90%D7%95%D7%9F",
+              "extracted_on": "2026-02-03",
+              "last_seen_on": "2026-05-08",
+              "still_on_page": true
+            },
+            {
+              "domain": "negev-museum.org.il",
+              "uri": "https://negev-museum.org.il/%25d7%25aa%25d7%25a7%25d7%25a0%25d7%2595%25d7%259f-%25d7%2594%25d7%259e%25d7%2595%25d7%2596%25d7%2590%25d7%2595%25d7%259f",
+              "extracted_on": "2025-08-02",
+              "last_seen_on": "2026-05-07",
+              "still_on_page": true
+            },
+            {
+              "domain": "kivunim7.co.il",
+              "uri": "https://kivunim7.co.il/center/%25d7%259e%25d7%25a8%25d7%259b%25d7%2596-%25d7%2593%25d7%25a0%25d7%2599%25d7%25a1-%25d7%2594%25d7%2599%25d7%25a9%25d7%25a8%25d7%2593%25d7%2595%25d7%25aa-2",
+              "extracted_on": "2022-11-01",
+              "last_seen_on": "2026-05-04",
+              "still_on_page": true
+            },
+            {
+              "domain": "kivunim7.co.il",
+              "uri": "https://kivunim7.co.il/center/%D7%9E%D7%A8%D7%9B%D7%96-%D7%93%D7%A0%D7%99%D7%A1-%D7%94%D7%99%D7%A9%D7%A8%D7%93%D7%95%D7%AA-2",
+              "extracted_on": "2026-02-02",
+              "last_seen_on": "2026-05-04",
+              "still_on_page": true
+            },
+            {
+              "domain": "anzac.co.il",
+              "uri": "https://anzac.co.il/%D7%AA%D7%A7%D7%A0%D7%95%D7%9F",
+              "extracted_on": "2026-01-09",
+              "last_seen_on": "2026-04-20",
+              "still_on_page": true
+            },
+            {
+              "domain": "anzac.co.il",
+              "uri": "https://anzac.co.il/%25d7%25aa%25d7%25a7%25d7%25a0%25d7%2595%25d7%259f",
+              "extracted_on": "2025-10-07",
+              "last_seen_on": "2026-04-19",
+              "still_on_page": true
+            },
+            {
+              "domain": "midbarium.co.il",
+              "uri": "https://midbarium.co.il/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%91%D7%99%D7%98%D7%95%D7%9C%D7%99%D7%9D",
+              "extracted_on": "2026-03-25",
+              "last_seen_on": "2026-03-29",
+              "still_on_page": true
+            },
+            {
+              "domain": "midbarium.co.il",
+              "uri": "https://midbarium.co.il/%25d7%259e%25d7%2593%25d7%2599%25d7%25a0%25d7%2599%25d7%2595%25d7%25aa-%25d7%2591%25d7%2599%25d7%2598%25d7%2595%25d7%259c%25d7%2599%25d7%259d",
+              "extracted_on": "2025-06-24",
+              "last_seen_on": "2026-03-27",
+              "still_on_page": true
+            },
+            {
+              "domain": "gov.il",
+              "uri": "https://gov.il/he/departments/general/most_summer_camps",
+              "extracted_on": "2018-08-08",
+              "last_seen_on": "2019-03-19",
+              "still_on_page": false
+            }
+          ],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 2
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 91,
+          "email": "uzielietrogman@gmail.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 3
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 100,
+          "email": "ari@joe.co.il",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": false,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [
+            {
+              "domain": "xn----9hcbajix2gfiog.org.il",
+              "uri": "https://xn----9hcbajix2gfiog.org.il/%D7%A7%D7%A4%D7%94-%D7%92%D7%95-joe-cafe-%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%A7%D7%95%D7%97%D7%95%D7%AA",
+              "extracted_on": "2026-04-12",
+              "last_seen_on": "2026-05-17",
+              "still_on_page": true
+            },
+            {
+              "domain": "xn----9hcbajix2gfiog.org.il",
+              "uri": "https://xn----9hcbajix2gfiog.org.il/%25d7%25a7%25d7%25a4%25d7%2594-%25d7%2592%25d7%2595-joe-cafe-%25d7%25a9%25d7%2599%25d7%25a8%25d7%2595%25d7%25aa-%25d7%259c%25d7%25a7%25d7%2595%25d7%2597%25d7%2595%25d7%25aa",
+              "extracted_on": "2025-11-02",
+              "last_seen_on": "2026-04-12",
+              "still_on_page": true
+            }
+          ],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 4
+        }
+      },
+      {
+        "json": {
+          "status": "invalid",
+          "score": 0,
+          "email": "gorrilla@gmail.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": false,
+          "accept_all": false,
+          "block": false,
+          "sources": [],
+          "result": "undeliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 5
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 88,
+          "email": "neroli7869@gmail.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 6
+        }
+      },
+      {
+        "json": {
+          "status": "accept_all",
+          "score": 74,
+          "email": "cfitzg6505@aol.com",
+          "regexp": true,
+          "gibberish": true,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": true,
+          "block": false,
+          "sources": [],
+          "result": "risky",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 7
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 88,
+          "email": "ilayito134@gmail.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 8
+        }
+      },
+      {
+        "json": {
+          "status": "valid",
+          "score": 89,
+          "email": "bgbar136@gmail.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": true,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "pairedItem": {
+          "item": 9
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Hunter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "deduplicate business",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "lead scoring1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "deduplicate business": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "lead scoring1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        []
+      ]
+    },
+    "Search google": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Access and extract data from a specific URL": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Access and extract data from a specific URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        []
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        []
+      ]
+    },
+    "Hunter": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "51e11af9-27d6-4761-8adc-e306cc862ee4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "79251d8ce54b908f57fa42197c5922f75121b9892cd7e0cafc0f0f73902f2148"
+  },
+  "id": "TndtPzoy7TLitVX0",
+  "tags": []
+}
